@@ -1,0 +1,12 @@
+
+width=1554
+height=1008
+xcoor=2
+ycoor=173
+
+for i in $(ls Blueprint*.png)
+do
+	convert ${i}  +repage -crop 1554x1008+2+173 +repage ./cropped/${i}
+	echo $i
+done
+

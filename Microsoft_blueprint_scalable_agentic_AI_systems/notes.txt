@@ -1,0 +1,197 @@
+Blueprint Sclable Agentic AI Systems
+
+
+
+
+
+1. plan for agents
+2. Govern & secure agents
+3. Build agents
+4. Manage agents
+
+
+
+
+Enterprise Agent Problem 
+ - agent sprawl
+ - no shared memory
+ - tool dupes
+ - compliance b
+
+
+Experience Domain (Teams, MCP, Chat) <-> Agentic Domain (Copilot Studio, Foundry)<-> Platform Domain (Data Source, APIs, Vector, DB)
+
+Separate layers / clean boundaries
+
+
+# Experience Domain 
+    - WebSockets
+    - REST
+    - WebRTC
+    - MCP
+    - A2A
+    - Custom UI
+    - Teams
+    - M365 Copilot / Copilot Studio
+
+NOTE: entire ecosystem can be exposed via Agent
+
+
+# Agentic Domain 
+    - Orechestration
+    - Agents
+    - Custom Frameworks
+    - Foundry Agent Service
+    - Copilot Studtio
+    - Cusotom Framework
+       - LangGraph
+       - Crew.ai
+       - 3rd Party
+
+Foundry Agent Service : grounded company data
+
+
+
+Foundry Agent Service: 
+ - open 
+ - 1400 MCP connectors
+ - enterprise security
+ - one click publishing
+
+Hosted Agents: 
+ - any framework / code  (sandbox per sessions)
+    - LangGraph
+    - Claude Agent SD
+    - Github Copilot SDK
+
+Magentic ??
+
+Task -> Orechestrator
+         -> Task Ledger 
+         -> Progress Ledger 
+
+# Platform Domain 
+MCP   Foundry Tools/Toolbox     Foundry IQ          Fabric
+                                (Indexed|Remote)
+
+Model as a Service (MaaS)
+
+NOTE: For more information about agent orchestration patterns, 
+please visit: https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns
+
+
+Foundry Catalog:  11k models
+
+Model Strategy 
+ - deployment types
+ - capacity model
+ - frontier access
+ - lifecycle / retirement
+
+Foundry Tools
+
+MCP Servers
+
+Existing APIs can be packaged as MCP Server
+
+
+SKills: 
+ - setup as MCP
+ - setup directly to agent
+
+
+Microsoft IQ: 
+ - Work IQ
+    - context on people, collab, workflows
+ - Fabric IQ
+    - how biz operages
+ - Foundry IQ
+    - how agents use knowledge
+ - Web IQ
+    - context from web
+
+
+Agent 365
+Agent BUilder / Copilot Studio / Foundry Agent Service
+
+
+Integration Domain: 
+ - APIM
+ - API Center (?)
+ - AI Gateway
+ - MCP Catalog
+
+APIM: AI Gateway
+
+API Center = Discover & Govern
+
+Azure API Center 
+  - MCP Registry
+
+
+
+
+Governance of AI
+ - policy
+ - identity / access
+ - safety / quality
+ - protect / detect
+
+
+
+
+
+Foundry Control Plane (what is this)
+Agent 365 (org wide registry)
+Azure Policy 
+
+
+Identity Access
+ - Entra Agent ID
+ - RBAC
+
+
+Safety / Quality
+ - Foundry Guardrails 
+    - prompt sheilds
+    - content filters
+    - groundness checks
+ - Continuouse EVal
+    - score live agent traffice
+ - AI Red Teaming
+
+Protect / DEtect
+ - Defender for AI
+ - Sentinel
+ - Purview
+ - Azure Monitor
+
+
+https://github.com/Azure/AI-Landing-Zones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

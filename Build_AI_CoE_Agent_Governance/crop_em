@@ -1,0 +1,14 @@
+
+width=1546
+height=1000
+xcoor=0
+ycoor=173
+
+AI_CoE_
+
+for i in $(ls AI_CoE*.png)
+do
+	convert ${i}  +repage -crop 1554x1008+2+173 +repage ./cropped/${i}
+	echo $i
+done
+

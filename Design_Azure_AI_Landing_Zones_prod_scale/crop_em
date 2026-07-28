@@ -1,0 +1,15 @@
+
+width=1546
+height=1000
+xcoor=0
+ycoor=173
+
+
+
+
+for i in $(ls AI_Landing_Zone*.png)
+do
+	convert ${i}  +repage -crop 1550x1000+0+170 +repage ./cropped/${i}
+	echo $i
+done
+

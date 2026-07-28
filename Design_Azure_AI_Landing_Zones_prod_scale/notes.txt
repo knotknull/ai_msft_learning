@@ -1,0 +1,148 @@
+Design Azure AI Landing Zones for production at scale 
+20260727 
+12:00 - 13:00
+
+
+
+
+Microsoft Foundry
+Azure Landing Zones 
+AI Landing Zones
+
+
+
+# Microsoft Foundry 
+
+PaaS
+ - managed services
+ - agent Service services
+
+
+
+
+Cloud Adoption Framework (part of AI Framework)
+
+
+# Azure Landing Zones
+
+
+-enable migrations and new new apps
+-consider all platform resources
+-don't differentiat between IaaS and PaaS
+
+
+
+
+Design Principles 
+
+
+Design Areas:
+ - Environment
+ - Compliance
+    - sec 
+    - gov 
+    - mgmt
+
+
+AI Use Case        :20 %
+AI Landing Zone    :30 %
+Azure Landing Zone :50 %
+
+
+IaaS
+
+# AI Landing ZOne
+
+extensible implementation for MSFT Foundry
+
+
+Design Framework
+Reference Architecture 
+Extensibple Implementatino
+
+Design Framework 
+
+AI Ref Ach 
+- AI Gateway LZ
+- Foundry LZ
+
+
+Extensible Implementation
+- Terraform
+- Portal
+- Bicep
+
+
+Azure AI Landing Zones 
+
+
+AI Hub  Gateway
+ - Foundry Account
+ - Foundry Project
+ - APIM Gateway
+  - or  3rd Party Provider (Bedrock, etc)
+
+
+
+AI Landing Zone for Foundry
+
+Foundry Account within AI Landing Zone
+
+every call, authenticated, governed and metered
+
+
+LLM Backend Onboarding (own module)
+ - hooks into APIM Gateway
+
+LLM Backend Configuration:
+    backend types
+llm_backend_config
+
+multiple backends (primary, secondary)
+
+OpenAI
+Bedrock 
+Gemini
+
+Model Alias
+  alias --> LLM Model
+
+Jupiter Notebooks
+
+APIM decides where to route requests
+
+generated terraform files
+
+generate, deploy, test via Jupiter Notebook
+
+
+Governance 
+
+Access Contracts
+ - APIM per module
+
+Access Contracts Notebook
+ - which models
+ - capacity
+ - access contracts
+
+
+which use case to which model
+
+capacity test
+
+APIM frontdoor to AI Models
+
+Reference / Documentation:
+aka.ms/AILZ
+
+
+
+
+
+
+
+
+
+
+.

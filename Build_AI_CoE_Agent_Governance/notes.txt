@@ -1,0 +1,65 @@
+
+Build an AI Center of Excellence for agent governance
+11:00 - 12:00
+
+5 drivers of AI value
+ - business strategy
+ - org & culture
+ - AI Strategy & Experience
+ - AI Gov & Security
+ - and something else
+
+
+risks:
+ - ungrounded output / errors
+ - jailbreaks & prompt injection
+ - harmful content & code
+ - infringement claims 
+ - manipulation 
+
+# Center of Excellence
+
+ - gov & strategy
+ - technical
+ - skilling
+ - business
+
+TODO: What is PyRIT ?
+ - HAX Toolkit
+
+MAP: edit screen caps to AI_CoE__NNN.png  (001, 002, ..., 025)
+
+Global Standards:
+ISO 42001
+ISO 23894
+
+
+# Tools
+
+ - APIM
+ - Defender
+ - Entra Agent ID
+ - Purview
+
+
+Persona Based Governance ??
+- Foundry Control Plane
+- Security Dashboard for AI
+- MSFT Agent 365
+
+
+IT Teams: MSFT Agent 365
+Dev Teams: Foundry Control Plane  << WHAT IS THIS
+
+
+blech
+
+
+
+
+
+
+
+
+
+.
