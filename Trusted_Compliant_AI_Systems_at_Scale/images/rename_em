@@ -1,0 +1,12 @@
+
+new_stub="Trusted_Compliant_AI_Systems_at_Scale__"
+
+cntr=1
+for i in $(ls)
+do
+ # echo "$i"
+ printf -v pad_cnt "%03d" "$cntr"
+ next_stub="${new_stub}${pad_cnt}"
+ cntr=$((cntr +1 ))
+ echo "pad_cnt=${pad_cnt}   next_stub=${next_stub}   cntr=${cntr} "
+done 

@@ -1,0 +1,127 @@
+What it looks like: Trusted compliant AI Systems at scale
+
+
+AI Threat Landscape
+
+- Data 
+- Threats
+- Identity 
+- Regulations
+
+Top 10 Threats 
+1. Prompt injection / jail breaks 
+2. excessive 
+
+
+MSFT Agent 365: entrprise control plane
+observe 
+govern
+secure
+
+Agent 365 Overview admin center
+
+
+All Agents
+
+agent map
+
+
+Zero Trust for secure AI
+
+- Verify Explicitly 
+- Use Least privilege
+- Assume breach
+
+
+Compliance Manager (Purview)
+
+
+security: 
+ - Defender
+ - Entra
+ - Purview
+
+
+Agent 365 
+
+
+Identity and Access for Agents
+
+
+user 
+app
+device
+agent
+
+
+
+Entra Agent Id 
+- identity for agents
+
+
+Autonomous      Blueprint Token -> Agent Token -> Resource Token
+On-Behalf_of    User Token + Blueprint Toekn -> Resource Token
+Agent User Acct Persisten user presense    Blueprint Token -> User COntext Token -> Resource Token 
+        (named user account: mailbox, teams)
+
+
+Agent ID Design Best Practices
+
+1. Design blueprint before you build the agent
+2. One identity per agent - not exceptions
+3. accountability starts at day zero 
+4. make blueprints self-documenting
+5. push policy to the blueprint not, the instance
+6. Avoid registering AI Agents outside the Agent ID Framework
+
+
+Securing Data 
+1. Data is foundational to AI Adoption
+2. security must be continuous and contextual
+3. MSFT secures data where work happens
+4. AI native security closes the data readiness gap
+5. Protection follows data everywhere
+??
+
+
+Purview: 
+ - data security
+    - data loss prevention
+    - insider risk mgmt
+    - info protection
+    - data security posture mgmt
+    - data security investigations
+ - data governance
+    - data discovery
+    - data quality
+    - data curation
+    - data estate healt
+ - data compliance
+    - compliance manager 
+
+DSPM (?) << Purview
+
+
+
+new prompts
+new  sources
+model updates  
+
+
+Foundry AI Red Teaming Agent w/ PyRIT Integration
+- automated scanning
+- attach strategy
+
+Takeaways 
+
+Agentic AI Expands the attack surface 
+zero trust secures every layer 
+responsible AI becomes testable controls 
+observability turns signals into action 
+identity is the foundation of agent trust
+data protection follows every interaction
+runtime threats protections defends agents
+red teaming never stops
+
+
+.

@@ -1,0 +1,295 @@
+How to keep agentic workloads orchestrated, fast and affordable
+
+
+
+plan -> build -> secure & govern -> observe & evaluate -> optimize
+
+
+
+Optimization is continuous
+
+Agent Problems:
+ - agent sprawl
+ - no shared memory
+ - tool duplication
+ - ungoverened identity
+ - observability gaps
+ - model lock-in
+ - data plane chaos
+ - no cost visibility
+
+
+Architecture problem not a model problem
+
+
+Latency = Loops x (L LLM + L Tool + L Net)
+
+compounding issues 
+ - toekn cost grows non-linearly
+ - latency erodes trust
+ - RAG returns Noise
+ - Orchedstration Overhead Multiplies
+
+Agent Systems Anti-Patterns 
+ - Monolithic Agent Anti-Pattern
+    - one god agent
+ - Unbounded loop anti-patern
+    - failed retry runs indefinitely
+ - Context Corruption Chain
+    - agent writes incorrect state to shared memory
+ - Tool Call Ambiguity
+
+
+
+5 Layer Optimization Model 
+1. Model Selection
+    - which model does what work
+    - right size for task
+2. Skill & Context
+    - tokens in / out, 
+    - compress, cache, structure prompts, histories
+3. Retrieval Quality
+    - what knowledge reaches model
+4. Orechestration
+    - how agents / tools coordinate
+    - bound loops, parallelize independent work
+5. Infrastructure
+    - capcity provistioned / routed
+    - multi-region deployemnt
+    - hybrid capacity
+
+
+L1 Foundry Model Router
+L2 APIM Semantic Cache 
+   Agent Optimizer 
+L3 
+L4 
+L5 
+
+Blended Cost Reduction by Routing Pattern 
+    - non-LLM Alternative 
+        - deterministic code, rules, lookups
+    - small model offload
+        - classification, extraction , formatting
+    - tiered / cascading 
+        - try small model first, escalate when confidence is low
+    - model pooling by task family
+        - reasoning / summarisation  / extraction / embeddings
+
+bloated agent:
+every tool schema / full history  / top-20 chunks / task
+
+lean agent:
+active skill  / Summary  / top-3 chunks / task
+
+
+
+Single-Skill Single-Responsiblity Design
+3-5x faster task completion
+
+1.  each agent should have exactly one specified skill 
+     one clear domain of responsiblity 
+
+
+2. skills as pure deterministic function
+
+3. Tool-first design over agent-first
+    start by defining skill s and tools your system needs
+
+Skill engineering best practcies
+ - scope narrowly 
+    - one workflow per skill, small skills compose
+ - name for discovery 
+    - clear names and descriptions
+ - prefer scripts to prose
+    - deterministic steps as code
+ - reuse and chain
+    - compose skills into larger automations instead of duplicationing
+ - version and evaluate
+    - treat skills as software
+
+Prompt Engineering Best Practices 
+
+
+Prompt Anatomy for Cache Efficiency 
+
+static zone:  maximize KV cache hit rate
+
+KV Cache Prefix Boundary
+
+dynamic zone:  always append here 
+- user message
+- retrieved chunks / current cntext
+- turn history (summarized, not replayed)
+
+
+Key Techniques
+1. Prompt / Skill compression
+2. Context window Pruning
+3. 
+4. 
+
+
+Choose right mechanism 
+
+Skill for procedures 
+    - how do we do x here
+RAG for knowledge
+    - what is true right now
+Tools  for actions
+    - do X now
+Fine-tuning for behavior 
+
+Agent Complexity Ladder: 
+
+L1:  Single Agent + Bounded Tool Set
+L2:  Single Agent + Deterministic Workflow Steps
+L3:  Planner Agent + Specialist Sub-Agents
+L4:  Peer Multi-Agent Meshhh
+
+
+Tool Call Optimizaton Patterns: 
+ - parallel tool execution
+ - result summarization 
+ - minimal tool description
+ - tool call caching (Redis)
+
+Agent Optimizer  << Foundry Agent Service
+1. Evaluate the base line
+2. Generate candidates
+    - new instructions, skills or models
+3. Evaluate candidates
+4. Rank and recommend
+    - sorted by score, per task breakdowns and token cost
+5. Deploy the winnder
+
+clear tool name 
+- verb_noun  (get_customer, create_ticket)
+
+collapse into one agent (+ skills)                      split into multiple agents
+
+
+BOUND EVERY AGENT RUN 
+- fail cheap and immediately
+
+- token and cost budget
+    - per-run and per-tenant budgets enforced in the orhcestrator
+- turn and depth limits
+    - hard cap on loops
+- timeouts & fallbacks
+- tracing built-in
+
+
+RAG Optimization pipeline
+
+1. Chunking Strategy 
+    - 512 - 1024 tokens 
+    - semantic chunking beats fixed-size chunking
+    - enrich, title, lable
+
+2. Embedding mdoel
+    1526-dim for larcge corporation
+    768-dim for focusted domain
+
+3. Hybrid Search
+4. Semantic Reranking
+    - cross encoder re-score top-k candidate
+5. Metadata Filtering
+
+Retrieval evals 
+ - measure
+ - diagnose
+ - tune
+ - ship and re-measure
+
+Latency is an infrastrucure problem
+
+- Location
+- TTFT: Time to First Token
+    - shrink context 
+    - colocate services
+    - stream immediatly
+- Inter-token Latency
+    - smaller models per step
+    - capacity sizing 
+
+
+Ideal Agentic Loop 
+ - hydrate state  (see deck)
+
+Scale, Reliability, Governance (see deck)
+
+Reliability Patterns: 
+ - Stateless Rehydration  
+    APIM -> compute -> load state from Cosmos DB -> execute -> write back -> free thread
+ - Multi-Region Load Balancing
+    - round-roben
+    - priority-based : PTU primaty +paygo fallback 
+    - weighted 70/30
+
+Scaling across regions
+- Global 
+    - best capacity and price 
+    - default for latency teolerant residency flexible workload
+
+- Data ZOne
+    - processing constrainted to geographic zone (EU)
+- Regional
+    - pinned to ....
+
+
+AI Gateway Patterns
+- real-time telemetry & chargeback at token level
+- semantic caching powers cost efficiency + performance
+- standardized policies
+- able to scale to 1000s
+
+Cost Attribution Governance: 
+ - Tag spend by workload, team, env
+ - APIM token metrics per application, budgets and alerts before month end
+ - Report cost per resolved task to stakeholders, not raw token counts
+ - APIM rate limiting, per application token budgets
+
+Continuous cost optimization
+
+APIM for AI Workloads
+ - cost attribution with every API call w/ worklaod tags, team id
+ - per app token quotas
+
+
+
+A/B Testing w/ APIM weighted routing 
+ - compare quality, latency, cost, failure rate
+
+Canary rollout: 
+Awareness, Evaluation, Shador, 5% for 48h, 10%, 25%, 50%, 100%, retire
+
+Observability & Distributed Tracing
+Distributed Trace Chain 
+ 
+Agent Span
+Model Call span SPan
+Tool  Call span SPan
+RAG span SPan
+
+
+Observability Domains: 
+- Cost Observability
+- Latency Observability
+    KPIs:  P50, P95, P99 TTFT, end-to-end session latency
+- Quality  Observability
+
+Production Roadmap 
+- month 1:  audit
+- month 2:  secure
+    - Add APIM routing shields / Azure content safety
+    - Cosmos DB external state storage
+    - cost attribution tags
+- month 3:  optimize
+- month 4:  launch
+
+Optimization is a loop
+
+Models ship every quarter !!
+
+.

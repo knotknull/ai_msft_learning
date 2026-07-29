@@ -1,0 +1,12 @@
+
+width=1550
+height=1000
+xcoor=0
+ycoor=170
+
+Monitor_Govern_AI_Agents_with_AgentOps
+for i in $(ls Monitor_Govern_AI_Agents_with_AgentOps*.png)
+do
+	convert ${i}  +repage -crop 1554x1008+2+173 +repage ./cropped/${i}
+	echo $i
+done

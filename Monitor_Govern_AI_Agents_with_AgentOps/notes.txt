@@ -1,0 +1,150 @@
+Monitor and Govern AI Agents in Production with AgentOps
+
+
+
+
+MSFT Foundry: control plan
+
+
+Surfaces: foundry portal, sdk, azure cli /res, github actions 
+
+Capabilities  agents version , evaluators, red teaming, open tel tracing, content safety
+
+Runtime azure ai projects, deployments
+
+
+AgentOps wires evaluators -> gates -> traces -> alerts -> rollouts
+
+
+
+PyRIT
+
+
+
+
+# Production Readiness Checklist:
+ - target and version are explicity
+ - eval dataset and thresholds exist
+ - CI/CD gate blocks regressions
+ - telemetry and traces are wired (trace_ids)
+ - safety and red-team findings are tracked
+ - release evidence is reviewable
+ - owners know what to do when signals fail
+
+
+# AgentOps Operating Model 
+
+Evaluate        Ship                Observe         Operate
+datasets        gates               traces          diagnoese
+rubrics         approvals           metrics         runbooks
+red teaming     release evidence    feedback        improve   
+thresholds      canary              correlation     model life cycle
+    ^                                                    |
+    +----------------------------------------------------+
+
+
+Maturity Model (see deck)
+
+Level 1 - Inital            Level 2 - Defined           Level 3 - Managed       Level 4 - Optimized
+
+ad hoc demos                versioned prompts/agents    qlty + safety gate CI       Drift  / cost guardrails
+manual eval                    pre-prod eval data sets      continuos eval prod 
+no gates
+logs scattered
+
+
+# AgentOps Architecture
+(see deck)
+
+
+# Evaluation Strategy
+Base Model Selection            Pre-production Evaluation       Post-production Monitoring
+
+
+
+Red Teaming / AI Safety 
+
+Harmful content        Jailbreak       Hallucination       Data Exfiltration
+
+
+red team w/ PyRIT
+
+Agent Security Evaluation Run Time (ASERT ??)
+
+
+CI/CD gates for Agentic AI
+Build               Unit Tests              Evaluation Gate                 Deploy 
+
+agent config        tool integration        Task adherence              Dev -> Staging -> Prod
+prompt version      tests                   Tool Call Acuracey
+                                            Safety  | Red Team 
+                                            BLOCK if score < threshold       
+
+GitHub Actions
+
+
+
+
+gh copilot cli wires CI/CD together with OIDC, no passowrds
+
+observability more than monitoring 
+
+ - what did agent do and why 
+  - what docs scanned
+  - what were the decisions
+
+Observability Stack 
+
+Tracing             Monitoring              Evaluation 
+Otel Spans             agent dashboard          continuous eval on 
+Tool Calls              token usage             sampled traffic
+Latency                 latency                 scheduled eval
+Nested Agents           success/error rates     red team scans
+Cost per step           quality socres          on schedulee
+debug view              red team results
+
+
+Trace id across model and tool calls
+
+
+OpenTel throughout
+
+Agent365: works with other frameoworks
+
+AI incident runbook 
+triage flow:
+Detect -> Correlate trace -> Identify version -> Contain -> Analyze -> Fix -> Re-evaluation -> Close w/ evidence
+
+
+Model lifecycle and canary upgrades
+(see deck)
+
+bad prompt becomes an eval
+
+gates on every pull request
+30 day w/ on production candidate agent 
+
+1. pick one agent 
+2. evaluate it w/ release criteria and small eval dataset
+3. ship it w/ PR gates, deploy gates and readiness evidence
+4. Observe it with telemetry, traces, dashboards and alerts
+5. Own it with weekly evidence review and prod learnings
+6. Fee learnings back into next eval cycle
+7. Revisit the maturity model set your goal to reach next level within 90 days
+
+
+
+From my question: 
+How to Post Production Deploy eval gates?
+
+Richard Healy replied:
+Marc Pulido hi there , if you mean how to do post-production-deploy eval gates, the evaluators on the Evaluate your AI agents page (Task Adherence, Coherence, safety evaluators, plus the agent-specific set — Intent Resolution, Tool Call Accuracy, Response Completeness) aren't dev-only. The difference is the data source:
+In development → you point them at a static test dataset (JSONL).
+In production → you point them at live traffic via continuous evaluation, which samples a percentage of real agent runs, scores them with the same built-in evaluators, and surfaces the metrics in Foundry Observability + Azure Monitor / Application Insights — so you can alert on quality or safety drift.
+You can also run trace evaluation over interactions that already happened, using traces in Application Insights — great for retrospective/incident analysis.
+Two things to keep in mind:
+AI-assisted evaluators use a judge model, so they cost tokens per scored run — that's why production samples rather than scoring 100% of traffic.
+Reference-based evaluators that need a ground_truth answer don't really apply to live traffic; the query+response quality, safety and agent-behaviour evaluators are the ones you carry into prod.
+
+
+.
